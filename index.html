@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="BoOrbit — 一个关于 HomeLab、AI、技术探索与生活记录的个人数字花园。">
+<title>BoOrbit — Your Digital Universe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="landing-page">
+<header class="site-header">
+  <a class="site-brand" href="index.html" aria-label="BoOrbit 首页">
+    <span class="brand-mark" aria-hidden="true"><span class="brand-planet"></span></span>
+    <span class="brand-name">Bo<span>Orbit</span></span>
+  </a>
+  <nav class="site-nav" aria-label="主导航">
+    <a class="active" href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="radar.html">Radar</a>
+    <a href="#journal">Journal</a>
+    <a href="about.html">About</a>
+  </nav>
+  <div class="header-actions">
+    <a class="status-pill" href="https://status.boorbit.com" target="_blank" rel="noopener"><span></span>Systems online</a>
+    <button class="icon-button" id="themeToggle" onclick="toggleTheme()" aria-label="切换主题"><span id="themeIcon">◐</span></button>
+  </div>
+</header>
+
+<main>
+  <section class="hero section-shell">
+    <div class="hero-orbit orbit-one"></div>
+    <div class="hero-orbit orbit-two"></div>
+    <div class="hero-copy reveal">
+      <div class="eyebrow"><span></span> Personal digital infrastructure</div>
+      <h1>Your Digital<br><em>Universe.</em></h1>
+      <p class="hero-lead">构建私有云、AI 工作空间和企业级 HomeLab；也记录技术之外的生活、成长与思考。</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="projects.html">Explore BoOrbit <span>↗</span></a>
+        <a class="button button-ghost" href="#journal">Read the journal</a>
+      </div>
+      <div class="hero-meta">
+        <span>Munich, Germany</span>
+        <span class="meta-dot"></span>
+        <span>Self-hosted since 2026</span>
+      </div>
+    </div>
+    <div class="hero-visual reveal" aria-hidden="true">
+      <div class="universe-core">
+        <div class="core-ring ring-a"></div>
+        <div class="core-ring ring-b"></div>
+        <div class="core-ring ring-c"></div>
+        <div class="core-mark">B</div>
+        <div class="satellite sat-a"></div>
+        <div class="satellite sat-b"></div>
+        <div class="satellite sat-c"></div>
+      </div>
+      <div class="floating-label label-ai"><span></span> Private AI</div>
+      <div class="floating-label label-cloud"><span></span> Private Cloud</div>
+      <div class="floating-label label-observe"><span></span> Observability</div>
+    </div>
+  </section>
+
+  <section class="section-shell intro-section reveal">
+    <div class="section-kicker">01 — What is BoOrbit</div>
+    <div class="section-heading split-heading">
+      <h2>一个持续生长的<br>个人数字宇宙</h2>
+      <p>BoOrbit 连接技术、项目、知识与生活。它既是实验室，也是数字花园；既展示正在运行的基础设施，也记录构建过程中的经验。</p>
+    </div>
+    <div class="pillar-grid">
+      <article class="pillar-card"><div class="pillar-icon">AI</div><h3>Private AI</h3><p>基于 Ollama 与 OpenWebUI 的本地 AI 工作空间。</p><a href="radar.html">Explore AI <span>→</span></a></article>
+      <article class="pillar-card"><div class="pillar-icon">HL</div><h3>HomeLab</h3><p>身份、网络、监控、存储与应用组成的自托管基础设施。</p><a href="homelab.html">View infrastructure <span>→</span></a></article>
+      <article class="pillar-card"><div class="pillar-icon">DG</div><h3>Digital Garden</h3><p>技术雷达、工作经验、生活随笔与长期知识沉淀。</p><a href="#journal">Read notes <span>→</span></a></article>
+      <article class="pillar-card"><div class="pillar-icon">OP</div><h3>Open Projects</h3><p>把部署、改进与踩坑过程整理为可复用的项目经验。</p><a href="projects.html">See projects <span>→</span></a></article>
+    </div>
+  </section>
+
+  <section class="projects-section" id="projects">
+    <div class="section-shell reveal">
+      <div class="section-kicker">02 — Featured infrastructure</div>
+      <div class="section-heading"><h2>Built, operated,<br>and continuously improved.</h2></div>
+      <div class="project-grid">
+        <article class="project-card project-featured">
+          <div class="project-top"><span class="project-index">01</span><span class="project-state"><i></i>Operational</span></div>
+          <div class="project-symbol">AK</div>
+          <h3>Identity & Access</h3>
+          <p>Authentik 统一身份认证、OIDC、Proxy Provider 与基于用户组的访问控制。</p>
+          <div class="project-tags"><span>Authentik</span><span>OIDC</span><span>SSO</span></div>
+        </article>
+        <article class="project-card">
+          <div class="project-top"><span class="project-index">02</span><span class="project-state"><i></i>Operational</span></div>
+          <div class="project-symbol">GF</div>
+          <h3>Observability</h3>
+          <p>Prometheus、Grafana、cAdvisor 与 Uptime Kuma 组成的监控与告警系统。</p>
+          <div class="project-tags"><span>Grafana</span><span>Prometheus</span></div>
+        </article>
+        <article class="project-card">
+          <div class="project-top"><span class="project-index">03</span><span class="project-state"><i></i>Operational</span></div>
+          <div class="project-symbol">CL</div>
+          <h3>Private Cloud</h3>
+          <p>Nextcloud、Immich 与 NAS 共同承载文件、照片和个人数据。</p>
+          <div class="project-tags"><span>Nextcloud</span><span>Immich</span></div>
+        </article>
+        <article class="project-card">
+          <div class="project-top"><span class="project-index">04</span><span class="project-state"><i></i>Operational</span></div>
+          <div class="project-symbol">AI</div>
+          <h3>AI Workspace</h3>
+          <p>通过 OpenWebUI、Ollama 与 SearXNG 构建私有 AI 与搜索体验。</p>
+          <div class="project-tags"><span>OpenWebUI</span><span>Ollama</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell journal-section reveal" id="journal">
+    <div class="section-kicker">03 — Latest from the garden</div>
+    <div class="section-heading split-heading"><h2>观察、记录、分享</h2><p>记录新技术的变化，也保留生活和工作中值得回看的片段。</p></div>
+    <div class="editorial-grid">
+      <a class="editorial-card editorial-lead" href="posts/ai-browser.html">
+        <div class="editorial-cover cover-ai"><div class="cover-grid"></div><span>AI / RADAR</span><strong>↗</strong></div>
+        <div class="editorial-content"><div class="article-label">新技术雷达 · 4 分钟</div><h3>AI 浏览器正在变成新的入口</h3><p>当搜索框变成对话框，浏览网页的方式可能真的要改变了。</p><time>2026.07.28</time></div>
+      </a>
+      <div class="editorial-list">
+        <a class="editorial-row" href="posts/humanoid-robot.html"><span class="row-number">02</span><div><small>AI · ROBOTICS</small><h3>具身智能：从演示视频到量产车间</h3></div><time>2026.07.21</time></a>
+        <a class="editorial-row" href="posts/incident-review.html"><span class="row-number">03</span><div><small>WORK · OPERATIONS</small><h3>一次线上故障的复盘</h3></div><time>2026.07.15</time></a>
+        <a class="editorial-row" href="posts/munich-june.html"><span class="row-number">04</span><div><small>LIFE · PHOTOGRAPHY</small><h3>六月的慕尼黑</h3></div><time>2026.06.20</time></a>
+        <a class="editorial-row" href="posts/remote-work.html"><span class="row-number">05</span><div><small>WORK · COLLABORATION</small><h3>远程协作三年，我留下的几条习惯</h3></div><time>2026.06.30</time></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="radar-section">
+    <div class="section-shell reveal">
+      <div class="section-kicker">04 — Technology radar</div>
+      <div class="radar-layout">
+        <div><h2>Currently<br>exploring.</h2><p>关注真正可能改变工作与生活方式的技术，而不是追逐每一个热点。</p><a class="text-link" href="radar.html">Open technology radar <span>→</span></a></div>
+        <div class="radar-cloud"><span class="radar-xl">Local AI</span><span>Agents</span><span class="radar-lg">Self-hosting</span><span>Identity</span><span class="radar-lg">Observability</span><span>Networking</span><span>Automation</span><span class="radar-xl">Digital Sovereignty</span><span>Open Source</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell timeline-section reveal">
+    <div class="section-kicker">05 — Building in public</div>
+    <div class="section-heading split-heading"><h2>The BoOrbit timeline</h2><p>不是一次性完成的项目，而是一套持续迭代、逐步成熟的个人基础设施。</p></div>
+    <div class="timeline">
+      <div class="timeline-item"><time>2026.06</time><span></span><div><h3>Foundation</h3><p>Ubuntu Server、Docker、Nginx、DNS 与 NetBird。</p></div></div>
+      <div class="timeline-item"><time>2026.07</time><span></span><div><h3>Services & Identity</h3><p>Nextcloud、Immich、Vaultwarden、Authentik 与统一域名体系。</p></div></div>
+      <div class="timeline-item"><time>2026.08</time><span></span><div><h3>Observability & Brand</h3><p>监控告警体系、统一门户以及 BoOrbit Website v2.0。</p></div></div>
+      <div class="timeline-item timeline-future"><time>Next</time><span></span><div><h3>Logs & Automation</h3><p>Loki、Alloy、自动备份与更完整的运维自动化。</p></div></div>
+    </div>
+  </section>
+
+  <section class="about-strip reveal">
+    <div class="section-shell about-grid">
+      <div class="portrait-placeholder"><span>BO</span></div>
+      <div><div class="section-kicker">06 — About</div><h2>Bo Dong</h2><p class="about-role">Senior IT Specialist · Munich, Germany</p><p>专注企业 IT、身份与终端管理、云服务和自托管基础设施。BoOrbit 是我持续学习、实践和记录的地方。</p><div class="skill-list"><span>Enterprise IT</span><span>HomeLab</span><span>Identity</span><span>Cloud</span><span>AI</span><span>Networking</span></div><a class="text-link" href="about.html">More about me <span>→</span></a></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="section-shell footer-grid">
+    <div><div class="footer-brand">Bo<span>Orbit</span></div><p>Your Digital Universe.</p></div>
+    <div class="footer-links"><a href="https://github.com/BoOrbit" target="_blank" rel="noopener">GitHub ↗</a><a href="https://status.boorbit.com" target="_blank" rel="noopener">Status ↗</a><a href="about.html">About</a></div>
+    <div class="footer-copy">© 2026 BoOrbit<br>Built in Munich.</div>
+  </div>
+</footer>
+<script src="assets/main.js"></script>
+</body>
+</html>

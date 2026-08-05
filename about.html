@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>关于 — BoOrbit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
+  <span id="themeIcon">🌙</span><span id="themeLabel">夜间模式</span>
+</button>
+
+<div class="topbar">
+  <span class="brand">🛰️ BoOrbit</span>
+  <a href="index.html">首页</a>
+  <a href="radar.html">新技术雷达</a>
+  <a href="life.html">生活感悟</a>
+  <a href="work.html">工作经验</a>
+  <a href="about.html" class="active">关于</a>
+</div>
+
+<div class="app">
+
+  <div class="sidebar">
+    <div class="ws-header"><span class="icon">🛰️</span> BoOrbit</div>
+    <div class="sb-search">🔍 &nbsp;搜索…</div>
+    <a class="sb-item" href="index.html"><span class="em">📄</span>首页</a>
+    <a class="sb-item" href="radar.html"><span class="em">📡</span>新技术雷达</a>
+    <a class="sb-item" href="life.html"><span class="em">🌿</span>生活感悟</a>
+    <a class="sb-item" href="work.html"><span class="em">💼</span>工作经验</a>
+    <a class="sb-item active" href="about.html"><span class="em">🙋</span>关于</a>
+    <div class="sb-divider"></div>
+    <div class="sb-label">最近编辑</div>
+    <a class="sb-item" href="posts/ai-browser.html"><span class="em">🧭</span>AI 浏览器正在变成新的入口</a>
+    <a class="sb-item" href="posts/munich-june.html"><span class="em">📷</span>六月的慕尼黑</a>
+    <a class="sb-item" href="posts/incident-review.html"><span class="em">🧯</span>一次线上故障的复盘</a>
+  </div>
+
+  <div class="main">
+
+    <div class="crumb">🛰️ <a href="index.html">BoOrbit</a> <span class="sep">/</span> 关于</div>
+
+    <div class="page-icon">🙋</div>
+    <h1 class="title">关于我</h1>
+    <div class="byline">好奇、动手、记录</div>
+
+    <hr class="div">
+
+    <div class="article-body">
+      <p>你好，欢迎来到 BoOrbit。我是一名对技术保持好奇的工程师，白天写代码、解问题，晚上和周末喜欢捣鼓各种新工具、拍照、写字。</p>
+
+      <h2>为什么做这个网站</h2>
+      <p>信息太多，记住的太少。这个网站是我的"外置大脑"：把在媒体上看到的新技术和新应用整理成自己的理解，把生活里的感受趁还记得时写下来，把工作中踩过的坑变成以后能翻出来用的经验。</p>
+
+      <h2>这个网站有什么</h2>
+      <ul>
+        <li><strong>📡 新技术雷达</strong> —— 新技术、新应用的观察与上手笔记</li>
+        <li><strong>🌿 生活感悟</strong> —— 随笔、摄影、慢慢想明白的事</li>
+        <li><strong>💼 工作经验</strong> —— 复盘、方法论、协作习惯</li>
+      </ul>
+
+      <h2>联系我</h2>
+      <p>GitHub：<a class="gh-link" href="https://github.com/BoOrbit" target="_blank" rel="noopener">github.com/BoOrbit ↗</a></p>
+      <p>如果某篇文章对你有启发，或者你有不同的看法，欢迎来聊。</p>
+    </div>
+
+  </div>
+</div>
+
+<script src="assets/main.js"></script>
+</body>
+</html>

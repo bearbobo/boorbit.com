@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="企业级思维构建的个人数字基础设施，同时坚持公开分享与私有运维的边界。">
+<title>BoOrbit HomeLab — BoOrbit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="collection-page"><header class="site-header">
+  <a class="site-brand" href="index.html" aria-label="BoOrbit 首页">
+    <span class="brand-mark" aria-hidden="true"><span class="brand-planet"></span></span>
+    <span class="brand-name">Bo<span>Orbit</span></span>
+  </a>
+  <nav class="site-nav" aria-label="主导航">
+    <a href="index.html">Home</a>
+    <a href="projects.html" class="active">Projects</a>
+    <a href="radar.html" class="">Radar</a>
+    <a href="life.html" class="">Journal</a>
+    <a href="about.html" class="">About</a>
+  </nav>
+  <div class="header-actions">
+    <a class="status-pill" href="https://status.boorbit.com" target="_blank" rel="noopener"><span></span>Systems online</a>
+    <button class="icon-button" id="themeToggle" onclick="toggleTheme()" aria-label="切换主题"><span id="themeIcon">◐</span></button>
+  </div>
+</header><main class="public-main">
+<section class="page-hero section-shell reveal">
+  <div class="section-kicker">FLAGSHIP PROJECT</div>
+  <h1>BoOrbit HomeLab</h1>
+  <p>企业级思维构建的个人数字基础设施，同时坚持公开分享与私有运维的边界。</p>
+</section>
+<section class="section-shell page-section reveal">
+  <div class="project-facts"><div><span>Status</span><strong><i></i>Operational</strong></div><div><span>Location</span><strong>Munich, Germany</strong></div><div><span>Started</span><strong>June 2026</strong></div><div><span>Model</span><strong>Self-hosted</strong></div></div>
+  <div class="content-split">
+    <aside class="sticky-index"><a href="#overview">Overview</a><a href="#capabilities">Capabilities</a><a href="#architecture">Architecture</a><a href="#roadmap">Roadmap</a><a href="#privacy">Public / Private</a></aside>
+    <div class="longform">
+      <section id="overview"><h2>Overview</h2><p>BoOrbit HomeLab 是支撑整个 BoOrbit 生态的私有基础设施。公开页面只展示能力、技术选择和项目成果；IP、密钥、恢复流程及内部运行手册保留在私有文档中。</p></section>
+      <section id="capabilities"><h2>Capabilities</h2><div class="mini-grid"><div><span>01</span><h3>Identity</h3><p>统一登录与访问控制。</p></div><div><span>02</span><h3>Private Cloud</h3><p>文件、照片与个人数据。</p></div><div><span>03</span><h3>Private AI</h3><p>本地模型与搜索工作区。</p></div><div><span>04</span><h3>Observability</h3><p>监控、状态与邮件告警。</p></div><div><span>05</span><h3>Knowledge</h3><p>Wiki、笔记与项目记录。</p></div><div><span>06</span><h3>Security</h3><p>密码库、DNS 与远程访问。</p></div></div></section>
+      <section id="architecture"><h2>Public architecture</h2><div class="architecture-map"><div class="arch-core">BoOrbit</div><div class="arch-node n1">AI</div><div class="arch-node n2">Cloud</div><div class="arch-node n3">Identity</div><div class="arch-node n4">Monitoring</div><div class="arch-node n5">Knowledge</div><div class="arch-node n6">Security</div></div><p class="muted-note">该示意图刻意不包含内部 IP、端口、凭据和详细网络边界。</p></section>
+      <section id="roadmap"><h2>Roadmap</h2><div class="phase-list"><div><time>Phase 01–08</time><strong>Foundation</strong><span>Network, Docker, DNS, Nginx, Cloudflare, NetBird</span></div><div><time>Phase 09–10</time><strong>Services & Observability</strong><span>Identity, cloud, AI, monitoring and alerting</span></div><div><time>Phase 11</time><strong>Centralized Logging</strong><span>Loki and Alloy</span></div><div><time>Next</time><strong>Backup & Automation</strong><span>Recovery validation and operational automation</span></div></div></section>
+      <section id="privacy"><h2>Learn in public, operate in private</h2><p>公开分享设计思路、经验和结果；内部文档保存真实配置、备份恢复步骤、地址、密钥及运行手册。这是 BoOrbit 的长期内容原则。</p></section>
+    </div>
+  </div>
+</section>
+</main><footer class="site-footer compact-footer">
+  <div class="section-shell footer-grid">
+    <div><div class="footer-brand">Bo<span>Orbit</span></div><p>Your Digital Universe.</p></div>
+    <div class="footer-links"><a href="projects.html">Projects</a><a href="stack.html">Stack</a><a href="now.html">Now</a><a href="resources.html">Resources</a></div>
+    <div class="footer-copy">© 2026 BoOrbit<br>Munich, Germany</div>
+  </div>
+</footer>
+<script src="assets/main.js"></script>
+</body></html>

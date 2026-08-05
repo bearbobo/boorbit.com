@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="真实运行、持续维护，并在实践中不断完善的项目。">
+<title>Projects — BoOrbit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="collection-page"><header class="site-header">
+  <a class="site-brand" href="index.html" aria-label="BoOrbit 首页">
+    <span class="brand-mark" aria-hidden="true"><span class="brand-planet"></span></span>
+    <span class="brand-name">Bo<span>Orbit</span></span>
+  </a>
+  <nav class="site-nav" aria-label="主导航">
+    <a href="index.html">Home</a>
+    <a href="projects.html" class="active">Projects</a>
+    <a href="radar.html" class="">Radar</a>
+    <a href="life.html" class="">Journal</a>
+    <a href="about.html" class="">About</a>
+  </nav>
+  <div class="header-actions">
+    <a class="status-pill" href="https://status.boorbit.com" target="_blank" rel="noopener"><span></span>Systems online</a>
+    <button class="icon-button" id="themeToggle" onclick="toggleTheme()" aria-label="切换主题"><span id="themeIcon">◐</span></button>
+  </div>
+</header><main class="public-main">
+<section class="page-hero section-shell reveal">
+  <div class="section-kicker">SELECTED WORK</div>
+  <h1>Projects</h1>
+  <p>真实运行、持续维护，并在实践中不断完善的项目。</p>
+</section>
+<section class="section-shell page-section reveal">
+  <div class="filter-row"><span class="filter-chip active">All</span><span class="filter-chip">Infrastructure</span><span class="filter-chip">AI</span><span class="filter-chip">Web</span><span class="filter-chip">Automation</span></div>
+  <div class="case-grid">
+    <a class="case-card case-wide" href="homelab.html"><div class="case-number">01</div><div><span class="case-type">FLAGSHIP PROJECT</span><h2>BoOrbit HomeLab</h2><p>一套围绕身份、网络、存储、AI、监控和知识管理构建的个人数字基础设施。</p><div class="project-tags"><span>Docker</span><span>Authentik</span><span>Grafana</span><span>NetBird</span></div></div><span class="case-arrow">↗</span></a>
+    <a class="case-card" href="stack.html"><div class="case-number">02</div><span class="case-type">PLATFORM</span><h2>Identity & Access</h2><p>使用 Authentik 建立统一登录、OIDC 与基于用户组的访问控制。</p><span class="case-arrow">→</span></a>
+    <a class="case-card" href="stack.html"><div class="case-number">03</div><span class="case-type">OBSERVABILITY</span><h2>Monitoring Stack</h2><p>Prometheus、Grafana、cAdvisor 与 Uptime Kuma 组成的监控告警体系。</p><span class="case-arrow">→</span></a>
+    <a class="case-card" href="stack.html"><div class="case-number">04</div><span class="case-type">PRIVATE AI</span><h2>AI Workspace</h2><p>通过 OpenWebUI、Ollama 与 SearXNG 构建本地 AI 与搜索工作区。</p><span class="case-arrow">→</span></a>
+    <a class="case-card" href="index.html"><div class="case-number">05</div><span class="case-type">BRAND & WEB</span><h2>BoOrbit Website v2</h2><p>为个人数字生态建立一致、克制且可长期维护的品牌官网。</p><span class="case-arrow">→</span></a>
+  </div>
+</section>
+</main><footer class="site-footer compact-footer">
+  <div class="section-shell footer-grid">
+    <div><div class="footer-brand">Bo<span>Orbit</span></div><p>Your Digital Universe.</p></div>
+    <div class="footer-links"><a href="projects.html">Projects</a><a href="stack.html">Stack</a><a href="now.html">Now</a><a href="resources.html">Resources</a></div>
+    <div class="footer-copy">© 2026 BoOrbit<br>Munich, Germany</div>
+  </div>
+</footer>
+<script src="assets/main.js"></script>
+</body></html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一次线上故障的复盘 — BoOrbit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
+  <span id="themeIcon">🌙</span><span id="themeLabel">夜间模式</span>
+</button>
+
+<div class="topbar">
+  <span class="brand">🛰️ BoOrbit</span>
+  <a href="../index.html">首页</a>
+  <a href="../radar.html">新技术雷达</a>
+  <a href="../life.html">生活感悟</a>
+  <a href="../work.html">工作经验</a>
+  <a href="../about.html">关于</a>
+</div>
+
+<div class="app">
+
+  <div class="sidebar">
+    <div class="ws-header"><span class="icon">🛰️</span> BoOrbit</div>
+    <div class="sb-search">🔍 &nbsp;搜索…</div>
+    <a class="sb-item" href="../index.html"><span class="em">📄</span>首页</a>
+    <a class="sb-item" href="../radar.html"><span class="em">📡</span>新技术雷达</a>
+    <a class="sb-item" href="../life.html"><span class="em">🌿</span>生活感悟</a>
+    <a class="sb-item active" href="../work.html"><span class="em">💼</span>工作经验</a>
+    <a class="sb-item" href="../about.html"><span class="em">🙋</span>关于</a>
+    <div class="sb-divider"></div>
+    <div class="sb-label">最近编辑</div>
+    <a class="sb-item" href="ai-browser.html"><span class="em">🧭</span>AI 浏览器正在变成新的入口</a>
+    <a class="sb-item" href="munich-june.html"><span class="em">📷</span>六月的慕尼黑</a>
+    <a class="sb-item" href="incident-review.html"><span class="em">🧯</span>一次线上故障的复盘</a>
+  </div>
+
+  <div class="main">
+
+    <div class="crumb">🛰️ <a href="../index.html">BoOrbit</a> <span class="sep">/</span> <a href="../work.html">工作经验</a> <span class="sep">/</span> 一次线上故障的复盘</div>
+
+    <div class="page-icon">🧯</div>
+    <h1 class="title">一次线上故障的复盘</h1>
+    <div class="article-meta">
+      <span>2026-07-15</span> · <span>6 分钟</span> ·
+      <span class="tag tag-green">工作经验</span>
+      <span class="tag tag-orange">复盘</span>
+      <span class="tag tag-gray">运维</span>
+    </div>
+
+    <hr class="div">
+
+    <div class="article-body">
+
+      <div class="callout">
+        <span class="em">⚠️</span>
+        <div>本文是示例模板：把时间线、原因和整改项替换为你自己的内容即可。复盘的价值不在于追责，而在于让同一个坑不绊倒两次。</div>
+      </div>
+
+      <h2>事故经过</h2>
+      <p>某周二下午，监控系统开始报警：核心接口的错误率在 10 分钟内从 0.1% 爬到 30%。排查后发现，当天上午一次"无关紧要"的配置改动，把缓存过期时间从 300 秒误写成了 3 秒，导致下游数据库被打爆。</p>
+
+      <h2>时间线</h2>
+      <ul>
+        <li><code>10:42</code> 配置变更上线（未走评审，认为"只是改个数字"）</li>
+        <li><code>14:15</code> 流量高峰到来，缓存穿透，数据库 CPU 打满</li>
+        <li><code>14:24</code> 告警触发，开始排查</li>
+        <li><code>14:51</code> 定位到配置变更，回滚</li>
+        <li><code>15:03</code> 服务恢复</li>
+      </ul>
+
+      <h2>根因分析</h2>
+      <p>表面原因是配置写错了一个数字。但追问下去，真正的根因是流程：</p>
+      <ol>
+        <li>"小改动"可以绕过评审 —— 而事故往往恰恰来自小改动</li>
+        <li>配置没有格式校验，单位（秒/毫秒）全靠约定俗成</li>
+        <li>缺少灰度机制，配置一次性全量生效</li>
+      </ol>
+
+      <h2>我们改掉的三个坏习惯</h2>
+      <h3>1. 取消"小改动免检"的潜规则</h3>
+      <p>所有变更，哪怕只改一个数字，也必须过一遍评审。评审的成本远低于事故的成本。</p>
+      <h3>2. 给配置加上 Schema 校验</h3>
+      <p>关键参数带上单位和取值范围校验，不合规的配置直接拒绝加载。</p>
+      <h3>3. 配置变更也要灰度</h3>
+      <p>先 1% 机器生效，观察 10 分钟再全量。回滚预案写在变更单里，而不是出事后现想。</p>
+
+      <h2>写在最后</h2>
+      <blockquote>事故是昂贵的学费，复盘是为了不让学费白交。</blockquote>
+      <p>这次之后，团队里"这只是个小改动"成了一句需要警惕的话。</p>
+
+    </div>
+
+    <div class="prevnext">
+      <a href="remote-work.html"><span class="lbl">下一篇 · 工作经验</span>🏡 远程协作三年，我留下的几条习惯 →</a>
+    </div>
+
+  </div>
+</div>
+
+<script src="../assets/main.js"></script>
+</body>
+</html>
