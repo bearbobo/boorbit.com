@@ -7,6 +7,7 @@ const ROOT = path.resolve(__dirname, "..");
 const CONTENT_DIR = path.join(ROOT, "content", "journal");
 const POSTS_DIR = path.join(ROOT, "posts");
 const TEMPLATE_FILE = path.join(ROOT, "templates", "journal.html");
+const WORK_FILE = path.join(ROOT, "work.html");
 
 const categoryLinks = {
   "工作经验": "../work.html",
@@ -55,6 +56,66 @@ function normalizeDate(date) {
   return String(date).slice(0, 10);
 }
 
+function updateWorkPage(posts) {
+  if (!fs.existsSync(WORK_FILE)) {
+    console.warn("⚠️ work.html not found. Skipping work page update.");
+    return;
+  }
+
+  const workPosts = posts
+    .filter((post) => post.category === "工作经验")
+    .sort((a, b) => b.date.localeCompare(a.date));
+
+  const generatedHtml = workPosts
+    .map((post, index) => {
+      const isLast = index === workPosts.length - 1;
+      const borderStyle = isLast ? ' style="border-bottom:none;"' : "";
+
+      return `
+      <a class="post-row" href="posts/${escapeHtml(post.slug)}.html"${borderStyle}>
+        <span class="em">${escapeHtml(post.icon)}</span>
+        <div class="txt">
+          <div class="t">${escapeHtml(post.title)}</div>
+          <div class="s">${escapeHtml(post.summary)}</div>
+        </div>
+        <span class="date">${escapeHtml(post.date)}</span>
+      </a>`;
+    })
+    .join("\n");
+
+  const original = fs.readFileSync(WORK_FILE, "utf8");
+
+  const startMarker = "<!-- JOURNAL_AUTO_START -->";
+  const endMarker = "<!-- JOURNAL_AUTO_END -->";
+
+  const startIndex = original.indexOf(startMarker);
+  const endIndex = original.indexOf(endMarker);
+
+  if (startIndex === -1 || endIndex === -1) {
+    console.warn("⚠️ Journal markers not found in work.html.");
+    return;
+  }
+
+  const before =
+    original.slice(0, startIndex + startMarker.length);
+
+  const after =
+    original.slice(endIndex);
+
+  const updated =
+    before +
+    "\n" +
+    generatedHtml +
+    "\n      " +
+    after;
+
+  fs.writeFileSync(WORK_FILE, updated, "utf8");
+
+  console.log(
+    `✅ Updated work.html with ${workPosts.length} CMS Journal post(s)`
+  );
+}
+
 function buildJournal() {
   console.log("🛰️ BoOrbit Journal Builder");
   console.log("--------------------------");
@@ -84,6 +145,8 @@ function buildJournal() {
   let publishedCount = 0;
   let draftCount = 0;
 
+  const publishedPosts = [];
+
   for (const file of files) {
     const sourcePath = path.join(CONTENT_DIR, file);
     const source = fs.readFileSync(sourcePath, "utf8");
@@ -91,7 +154,7 @@ function buildJournal() {
     const { data, content } = matter(source);
 
     if (data.published !== true) {
-      console.log(`⏭️  Draft skipped: ${file}`);
+      console.log(`⏭️ Draft skipped: ${file}`);
       draftCount++;
       continue;
     }
@@ -106,13 +169,15 @@ function buildJournal() {
       continue;
     }
 
+    const rawDate = normalizeDate(data.date);
+
     const title = escapeHtml(data.title || "Untitled");
     const icon = escapeHtml(data.icon || "📝");
     const category = escapeHtml(data.category || "Journal");
     const categoryLink =
       categoryLinks[data.category] || "../index.html";
 
-    const date = escapeHtml(normalizeDate(data.date));
+    const date = escapeHtml(rawDate);
     const readTime = escapeHtml(data.read_time || "");
     const tags = buildTags(data.tags);
 
@@ -129,13 +194,27 @@ function buildJournal() {
     output = replaceToken(output, "tags", tags);
     output = replaceToken(output, "content", bodyHtml);
 
-    const outputFile = path.join(POSTS_DIR, `${slug}.html`);
+    const outputFile = path.join(
+      POSTS_DIR,
+      `${slug}.html`
+    );
 
     fs.writeFileSync(outputFile, output, "utf8");
+
+    publishedPosts.push({
+      slug,
+      title: data.title || "Untitled",
+      icon: data.icon || "📝",
+      category: data.category || "Journal",
+      summary: data.summary || "",
+      date: rawDate
+    });
 
     console.log(`✅ Published: posts/${slug}.html`);
     publishedCount++;
   }
+
+  updateWorkPage(publishedPosts);
 
   console.log("--------------------------");
   console.log(`Published: ${publishedCount}`);
