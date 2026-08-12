@@ -10,7 +10,7 @@ tags:
   - BoOrbit
   - CMS
   - Test
-published: false
+published: true
 ---
 这是通过 Pages CMS 创建的第一篇 BoOrbit Journal。
 
