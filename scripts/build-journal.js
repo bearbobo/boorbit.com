@@ -7,7 +7,7 @@ const ROOT = path.resolve(__dirname, "..");
 const CONTENT_DIR = path.join(ROOT, "content", "journal");
 const POSTS_DIR = path.join(ROOT, "posts");
 const TEMPLATE_FILE = path.join(ROOT, "templates", "journal.html");
-// const WORK_FILE = path.join(ROOT, "work.html");
+
 const categoryPages = {
   "工作经验": "work.html",
   "生活感悟": "life.html",
@@ -61,65 +61,48 @@ function normalizeDate(date) {
   return String(date).slice(0, 10);
 }
 
-// function updateWorkPage(posts) {
-//   if (!fs.existsSync(WORK_FILE)) {
-//     console.warn("⚠️ work.html not found. Skipping work page update.");
-//     return;
-//   }
+function buildPrevNext(post, categoryPosts) {
+  const index = categoryPosts.findIndex(
+    (item) => item.slug === post.slug
+  );
 
-//   const workPosts = posts
-//     .filter((post) => post.category === "工作经验")
-//     .sort((a, b) => b.date.localeCompare(a.date));
+  if (index === -1) return "";
 
-//   const generatedHtml = workPosts
-//     .map((post, index) => {
-//       const isLast = index === workPosts.length - 1;
-//       const borderStyle = isLast ? ' style="border-bottom:none;"' : "";
+  // categoryPosts 按日期从新到旧排列
+  const newerPost =
+    index > 0 ? categoryPosts[index - 1] : null;
 
-//       return `
-//       <a class="post-row" href="posts/${escapeHtml(post.slug)}.html"${borderStyle}>
-//         <span class="em">${escapeHtml(post.icon)}</span>
-//         <div class="txt">
-//           <div class="t">${escapeHtml(post.title)}</div>
-//           <div class="s">${escapeHtml(post.summary)}</div>
-//         </div>
-//         <span class="date">${escapeHtml(post.date)}</span>
-//       </a>`;
-//     })
-//     .join("\n");
+  const olderPost =
+    index < categoryPosts.length - 1
+      ? categoryPosts[index + 1]
+      : null;
 
-//   const original = fs.readFileSync(WORK_FILE, "utf8");
+  const links = [];
 
-//   const startMarker = "<!-- JOURNAL_AUTO_START -->";
-//   const endMarker = "<!-- JOURNAL_AUTO_END -->";
+  if (newerPost) {
+    links.push(`
+      <a href="${escapeHtml(newerPost.slug)}.html">
+        ← <span class="lbl">上一篇 · ${escapeHtml(post.category)}</span>
+        ${escapeHtml(newerPost.icon)} ${escapeHtml(newerPost.title)}
+      </a>`);
+  }
 
-//   const startIndex = original.indexOf(startMarker);
-//   const endIndex = original.indexOf(endMarker);
+  if (olderPost) {
+    links.push(`
+      <a href="${escapeHtml(olderPost.slug)}.html">
+        <span class="lbl">下一篇 · ${escapeHtml(post.category)}</span>
+        ${escapeHtml(olderPost.icon)} ${escapeHtml(olderPost.title)} →
+      </a>`);
+  }
 
-//   if (startIndex === -1 || endIndex === -1) {
-//     console.warn("⚠️ Journal markers not found in work.html.");
-//     return;
-//   }
+  if (links.length === 0) return "";
 
-//   const before =
-//     original.slice(0, startIndex + startMarker.length);
+  return `
+    <div class="prevnext">
+      ${links.join("\n")}
+    </div>`;
+}
 
-//   const after =
-//     original.slice(endIndex);
-
-//   const updated =
-//     before +
-//     "\n" +
-//     generatedHtml +
-//     "\n      " +
-//     after;
-
-//   fs.writeFileSync(WORK_FILE, updated, "utf8");
-
-//   console.log(
-//     `✅ Updated work.html with ${workPosts.length} CMS Journal post(s)`
-//   );
-// }
 function updateCategoryPage(posts, categoryName, pageFile) {
   const targetFile = path.join(ROOT, pageFile);
 
@@ -210,11 +193,11 @@ function buildJournal() {
     return;
   }
 
-  let publishedCount = 0;
   let draftCount = 0;
 
   const publishedPosts = [];
 
+  // 第一步：先读取所有已发布文章
   for (const file of files) {
     const sourcePath = path.join(CONTENT_DIR, file);
     const source = fs.readFileSync(sourcePath, "utf8");
@@ -237,19 +220,49 @@ function buildJournal() {
       continue;
     }
 
-    const rawDate = normalizeDate(data.date);
+    publishedPosts.push({
+      slug,
+      title: data.title || "Untitled",
+      icon: data.icon || "📝",
+      category: data.category || "Journal",
+      summary: data.summary || "",
+      date: normalizeDate(data.date),
+      readTime: data.read_time || "",
+      tags: data.tags || [],
+      content
+    });
+  }
 
-    const title = escapeHtml(data.title || "Untitled");
-    const icon = escapeHtml(data.icon || "📝");
-    const category = escapeHtml(data.category || "Journal");
+  // 第二步：按分类预先排序
+  const postsByCategory = {};
+
+  for (const categoryName of Object.keys(categoryPages)) {
+    postsByCategory[categoryName] = publishedPosts
+      .filter((post) => post.category === categoryName)
+      .sort((a, b) => b.date.localeCompare(a.date));
+  }
+
+  // 第三步：生成文章页面
+  let publishedCount = 0;
+
+  for (const post of publishedPosts) {
+    const title = escapeHtml(post.title);
+    const icon = escapeHtml(post.icon);
+    const category = escapeHtml(post.category);
     const categoryLink =
-      categoryLinks[data.category] || "../index.html";
+      categoryLinks[post.category] || "../index.html";
 
-    const date = escapeHtml(rawDate);
-    const readTime = escapeHtml(data.read_time || "");
-    const tags = buildTags(data.tags);
+    const date = escapeHtml(post.date);
+    const readTime = escapeHtml(post.readTime);
+    const tags = buildTags(post.tags);
 
-    const bodyHtml = marked.parse(content);
+    const bodyHtml = marked.parse(post.content);
+
+    const categoryPosts =
+      postsByCategory[post.category] || [];
+
+    const prevnext =
+      buildPrevNext(post, categoryPosts);
 
     let output = template;
 
@@ -261,35 +274,27 @@ function buildJournal() {
     output = replaceToken(output, "read_time", readTime);
     output = replaceToken(output, "tags", tags);
     output = replaceToken(output, "content", bodyHtml);
+    output = replaceToken(output, "prevnext", prevnext);
 
     const outputFile = path.join(
       POSTS_DIR,
-      `${slug}.html`
+      `${post.slug}.html`
     );
 
     fs.writeFileSync(outputFile, output, "utf8");
 
-    publishedPosts.push({
-      slug,
-      title: data.title || "Untitled",
-      icon: data.icon || "📝",
-      category: data.category || "Journal",
-      summary: data.summary || "",
-      date: rawDate
-    });
-
-    console.log(`✅ Published: posts/${slug}.html`);
+    console.log(`✅ Published: posts/${post.slug}.html`);
     publishedCount++;
   }
 
-  // updateWorkPage(publishedPosts);
+  // 第四步：更新分类列表
   for (const [categoryName, pageFile] of Object.entries(categoryPages)) {
-  updateCategoryPage(
-    publishedPosts,
-    categoryName,
-    pageFile
-  );
-}
+    updateCategoryPage(
+      publishedPosts,
+      categoryName,
+      pageFile
+    );
+  }
 
   console.log("--------------------------");
   console.log(`Published: ${publishedCount}`);
