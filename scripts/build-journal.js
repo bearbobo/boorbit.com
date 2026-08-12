@@ -283,6 +283,59 @@ function buildJournal() {
       buildPrevNext(post, categoryPosts);
     const recentPosts =
   buildRecentPosts(publishedPosts, post.slug);
+    function updateRecentPostsSection(posts, pageFile) {
+  const targetFile = path.join(ROOT, pageFile);
+
+  if (!fs.existsSync(targetFile)) {
+    console.warn(`⚠️ ${pageFile} not found. Skipping recent posts update.`);
+    return;
+  }
+
+  const recentPosts = [...posts]
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .slice(0, 3);
+
+  const generatedHtml = recentPosts
+    .map((post) => {
+      return `
+    <a class="sb-item" href="posts/${escapeHtml(post.slug)}.html">
+      <span class="em">${escapeHtml(post.icon)}</span>${escapeHtml(post.title)}
+    </a>`;
+    })
+    .join("\n");
+
+  const original = fs.readFileSync(targetFile, "utf8");
+
+  const startMarker = "<!-- RECENT_POSTS_START -->";
+  const endMarker = "<!-- RECENT_POSTS_END -->";
+
+  const startIndex = original.indexOf(startMarker);
+  const endIndex = original.indexOf(endMarker);
+
+  if (startIndex === -1 || endIndex === -1) {
+    console.warn(`⚠️ Recent posts markers not found in ${pageFile}.`);
+    return;
+  }
+
+  const before =
+    original.slice(0, startIndex + startMarker.length);
+
+  const after =
+    original.slice(endIndex);
+
+  const updated =
+    before +
+    "\n" +
+    generatedHtml +
+    "\n    " +
+    after;
+
+  fs.writeFileSync(targetFile, updated, "utf8");
+
+  console.log(
+    `✅ Updated recent posts in ${pageFile}`
+  );
+}
 
     let output = template;
 
@@ -320,6 +373,13 @@ function buildJournal() {
       pageFile
     );
   }
+for (const pageFile of Object.values(categoryPages)) {
+  updateRecentPostsSection(
+    publishedPosts,
+    pageFile
+  );
+}
+  
 
   console.log("--------------------------");
   console.log(`Published: ${publishedCount}`);
