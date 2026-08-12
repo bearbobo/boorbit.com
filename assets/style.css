@@ -91,3 +91,17 @@ body:not(.landing-page) .app{display:flex;min-height:100vh}.sidebar{width:245px;
 .resource-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.resource-grid>a{min-height:310px;padding:30px;border:1px solid var(--line);border-radius:18px;background:var(--surface);display:flex;flex-direction:column;transition:.25s}.resource-grid>a:hover{transform:translateY(-4px);box-shadow:var(--shadow)}.resource-grid span{font-family:'JetBrains Mono',monospace;color:var(--text-faint);font-size:11px}.resource-grid h2{font-family:'Space Grotesk',sans-serif;font-size:34px;margin:55px 0 10px}.resource-grid p{color:var(--text-soft)}.resource-grid strong{margin-top:auto;color:var(--accent-strong);font-size:13px}.compact-footer{margin-top:0}
 @media(max-width:900px){.case-grid,.service-grid,.now-grid,.resource-grid{grid-template-columns:1fr}.case-wide{grid-column:auto;display:flex}.project-facts{grid-template-columns:repeat(2,1fr)}.content-split{grid-template-columns:1fr}.sticky-index{display:none}.mini-grid{grid-template-columns:repeat(2,1fr)}.stack-groups>section{grid-template-columns:1fr}.uses-layout{grid-template-columns:1fr}.phase-list>div{grid-template-columns:100px 1fr}.phase-list span{grid-column:2}.service-intro{align-items:flex-start;flex-direction:column}}
 @media(max-width:620px){.page-hero{padding:80px 0 55px}.page-hero h1{font-size:58px}.page-hero>p{font-size:16px}.page-section{padding:60px 0 90px}.project-facts{grid-template-columns:1fr}.project-facts>div{border-right:0;border-bottom:1px solid var(--line)}.mini-grid{grid-template-columns:1fr}.architecture-map{height:400px}.arch-node{width:84px}.stack-list>div{grid-template-columns:1fr auto}.stack-list span{grid-column:1/-1}.service-card{grid-template-columns:52px 1fr}.service-card>span{grid-column:2}.resource-grid h2{font-size:28px}}
+
+/* ===== Journal article images ===== */
+
+.article-body img {
+  display: block;
+  width: auto;
+  max-width: min(100%, 680px);
+  max-height: 520px;
+  object-fit: contain;
+
+  margin: 28px auto;
+
+  border-radius: 10px;
+}
