@@ -22,5 +22,5 @@ published: true
 
 **没有哪一根线是孤立的，也没有哪一个选择真正与环境无关。**
 
-![image.png](blob:https:/app.pagescms.org/24b9c834-ed3c-4ac9-b8ff-5f4a8df8a93b)
+![haus_der_kunst01.jpeg](/assets/uploads/journal/haus_der_kunst01.jpeg)
 
