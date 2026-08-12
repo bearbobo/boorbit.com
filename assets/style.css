@@ -96,12 +96,15 @@ body:not(.landing-page) .app{display:flex;min-height:100vh}.sidebar{width:245px;
 
 .article-body img {
   display: block;
-  width: auto;
-  max-width: min(100%, 680px);
-  max-height: 520px;
-  object-fit: contain;
-
+  width: 82%;
+  height: auto;
+  max-width: 100%;
   margin: 28px auto;
-
   border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .article-body img {
+    width: 100%;
+  }
 }
