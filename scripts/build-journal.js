@@ -61,6 +61,24 @@ function normalizeDate(date) {
   return String(date).slice(0, 10);
 }
 
+function buildRecentPosts(posts, currentSlug = "") {
+  const recentPosts = [...posts]
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .slice(0, 3);
+
+  return recentPosts
+    .map((post) => {
+      const activeClass =
+        post.slug === currentSlug ? " active" : "";
+
+      return `
+    <a class="sb-item${activeClass}" href="${escapeHtml(post.slug)}.html">
+      <span class="em">${escapeHtml(post.icon)}</span>${escapeHtml(post.title)}
+    </a>`;
+    })
+    .join("\n");
+}
+
 function buildPrevNext(post, categoryPosts) {
   const index = categoryPosts.findIndex(
     (item) => item.slug === post.slug
@@ -263,6 +281,8 @@ function buildJournal() {
 
     const prevnext =
       buildPrevNext(post, categoryPosts);
+    const recentPosts =
+  buildRecentPosts(publishedPosts, post.slug);
 
     let output = template;
 
@@ -275,6 +295,11 @@ function buildJournal() {
     output = replaceToken(output, "tags", tags);
     output = replaceToken(output, "content", bodyHtml);
     output = replaceToken(output, "prevnext", prevnext);
+    output = replaceToken(
+  output,
+  "recent_posts",
+  recentPosts
+);
 
     const outputFile = path.join(
       POSTS_DIR,
