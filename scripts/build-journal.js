@@ -7,7 +7,12 @@ const ROOT = path.resolve(__dirname, "..");
 const CONTENT_DIR = path.join(ROOT, "content", "journal");
 const POSTS_DIR = path.join(ROOT, "posts");
 const TEMPLATE_FILE = path.join(ROOT, "templates", "journal.html");
-const WORK_FILE = path.join(ROOT, "work.html");
+// const WORK_FILE = path.join(ROOT, "work.html");
+const categoryPages = {
+  "工作经验": "work.html",
+  "生活感悟": "life.html",
+  "新技术雷达": "radar.html"
+};
 
 const categoryLinks = {
   "工作经验": "../work.html",
