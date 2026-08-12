@@ -1,0 +1,13 @@
+{
+  "name": "boorbit-website",
+  "version": "2.1.4",
+  "private": true,
+  "description": "BoOrbit website and Journal build pipeline",
+  "scripts": {
+    "build": "node scripts/build-journal.js"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "marked": "^16.1.2"
+  }
+}
