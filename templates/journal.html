@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{title}} — BoOrbit</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+
+<body>
+
+<button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
+  <span id="themeIcon">🌙</span>
+  <span id="themeLabel">夜间模式</span>
+</button>
+
+<div class="topbar">
+  <span class="brand">🛰️ BoOrbit</span>
+  <a href="../index.html">首页</a>
+  <a href="../radar.html">新技术雷达</a>
+  <a href="../life.html">生活感悟</a>
+  <a href="../work.html">工作经验</a>
+  <a href="../about.html">关于</a>
+</div>
+
+<div class="app">
+
+  <div class="sidebar">
+
+    <div class="ws-header">
+      <span class="icon">🛰️</span> BoOrbit
+    </div>
+
+    <div class="sb-search">🔍 &nbsp;搜索…</div>
+
+    <a class="sb-item" href="../index.html">
+      <span class="em">📄</span>首页
+    </a>
+
+    <a class="sb-item" href="../radar.html">
+      <span class="em">📡</span>新技术雷达
+    </a>
+
+    <a class="sb-item" href="../life.html">
+      <span class="em">🌿</span>生活感悟
+    </a>
+
+    <a class="sb-item" href="../work.html">
+      <span class="em">💼</span>工作经验
+    </a>
+
+    <a class="sb-item" href="../about.html">
+      <span class="em">🙋</span>关于
+    </a>
+
+    <div class="sb-divider"></div>
+
+    <div class="sb-label">最近编辑</div>
+
+    <a class="sb-item" href="ai-browser.html">
+      <span class="em">🧭</span>AI 浏览器正在变成新的入口
+    </a>
+
+    <a class="sb-item" href="munich-june.html">
+      <span class="em">📷</span>六月的慕尼黑
+    </a>
+
+    <a class="sb-item" href="incident-review.html">
+      <span class="em">🧯</span>一次线上故障的复盘
+    </a>
+
+  </div>
+
+
+  <div class="main">
+
+    <div class="crumb">
+      🛰️
+      <a href="../index.html">BoOrbit</a>
+      <span class="sep">/</span>
+      <a href="{{category_link}}">{{category}}</a>
+      <span class="sep">/</span>
+      {{title}}
+    </div>
+
+    <div class="page-icon">{{icon}}</div>
+
+    <h1 class="title">{{title}}</h1>
+
+    <div class="article-meta">
+      <span>{{date}}</span>
+      ·
+      <span>{{read_time}}</span>
+      ·
+      {{tags}}
+    </div>
+
+    <hr class="div">
+
+    <div class="article-body">
+
+      {{content}}
+
+    </div>
+
+  </div>
+
+</div>
+
+<script src="../assets/main.js"></script>
+
+</body>
+</html>
