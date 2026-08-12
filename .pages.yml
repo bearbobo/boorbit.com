@@ -1,0 +1,71 @@
+media:
+  input: assets/uploads/journal
+  output: /assets/uploads/journal
+
+content:
+  - name: journal
+    label: Journal
+    type: collection
+    path: content/journal
+    filename: "{fields.slug}.md"
+
+    fields:
+      - name: title
+        label: 标题
+        type: string
+        required: true
+
+      - name: slug
+        label: Slug
+        type: string
+        required: true
+
+      - name: date
+        label: 日期
+        type: date
+        required: true
+
+      - name: icon
+        label: 图标
+        type: string
+        default: "📝"
+
+      - name: category
+        label: 分类
+        type: select
+        required: true
+        options:
+          values:
+            - 工作经验
+            - 生活感悟
+            - 新技术雷达
+
+      - name: summary
+        label: 摘要
+        type: text
+        required: true
+
+      - name: read_time
+        label: 阅读时间
+        type: string
+        default: "5 分钟"
+
+      - name: tags
+        label: 标签
+        type: string
+        list: true
+
+      - name: published
+        label: 发布
+        type: boolean
+        default: false
+
+      - name: body
+        label: 正文
+        type: rich-text
+        required: true
+        options:
+          format: markdown
+          media: default
+          path: assets/uploads/journal
+          switcher: true
