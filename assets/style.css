@@ -257,24 +257,25 @@ body:not(.landing-page) .app{display:flex;min-height:100vh}.sidebar{width:245px;
 }
 
 .section-cta {
-  margin-top: 40px;
+  margin-top: 28px;
 }
 
 .section-cta a {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
 
-  color: var(--accent);
+  color: inherit;
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
+  opacity: 0.85;
 
   transition: opacity 0.2s ease;
 }
 
 .section-cta a:hover {
-  opacity: 0.7;
+  opacity: 1;
 }
 
 .section-cta a span {
