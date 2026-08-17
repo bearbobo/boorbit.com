@@ -108,3 +108,62 @@ body:not(.landing-page) .app{display:flex;min-height:100vh}.sidebar{width:245px;
     width: 100%;
   }
 }
+
+/* ========== 三卡片新样式 ========== */
+
+/* 卡片容器：继承 pillar-card 的全部样式 */
+.orbit-card {
+  padding: 30px 26px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  transition: transform .25s, box-shadow .25s, border-color .25s;
+}
+.orbit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow);
+  border-color: var(--accent-soft);
+}
+
+/* 顶部标签：继承 pillar-icon，但宽度自适应长单词（BUILD/OPERATE/WRITE） */
+.card-code {
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: var(--surface-soft);
+  color: var(--accent-strong);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  width: auto;
+  padding: 0 14px;
+  justify-self: start;
+}
+
+/* 标题与描述文字：与 pillar-card 完全一致 */
+.orbit-card h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  margin: 32px 0 10px;
+}
+.orbit-card p {
+  color: var(--text-soft);
+  font-size: 14px;
+  margin: 0;
+}
+
+/* 底部链接：箭头直接写在文本里，不需要 space-between */
+.orbit-card a {
+  margin-top: auto;
+  padding-top: 28px;
+  color: var(--accent-strong);
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
