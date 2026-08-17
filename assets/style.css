@@ -255,3 +255,32 @@ body:not(.landing-page) .app{display:flex;min-height:100vh}.sidebar{width:245px;
     min-height: 210px;
   }
 }
+
+.section-cta {
+  margin-top: 40px;
+}
+
+.section-cta a {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+
+  transition: opacity 0.2s ease;
+}
+
+.section-cta a:hover {
+  opacity: 0.7;
+}
+
+.section-cta a span {
+  transition: transform 0.2s ease;
+}
+
+.section-cta a:hover span {
+  transform: translateX(4px);
+}
